@@ -5,6 +5,7 @@
         <img src="./assets/logo.svg" alt="logo">
       </div>
       <ul class="flex flex-row justify-center gap-4">
+
         <li class="text-[#fff] hover:text-[#fcd535]">
           <NuxtLink to="/settings">Settings</NuxtLink>
         </li>
@@ -25,6 +26,7 @@
 import { useOrderBookStore } from '@/stores/orderBook'
 const store = useOrderBookStore()
 onMounted(() => {
+  store.setSelectedPair();
   store.setLogs();
 })
 </script>

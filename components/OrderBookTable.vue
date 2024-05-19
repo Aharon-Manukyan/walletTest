@@ -3,7 +3,9 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50 sticky top-0">
                 <tr>
-                    <th>{{ title }}</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ title }}</th>
                     <th scope="col"
                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Price</th>
@@ -21,7 +23,7 @@
                     <td class=" px-6 py-4 whitespace-nowrap text-right">{{ (+item[0]).toFixed(2) }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right">{{ (+item[1]).toFixed(2) }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-right sm:hidden xs:hidden">{{ (+item[0] *
-                        +item[1]).toFixed(3) }}
+                            +item[1]).toFixed(3) }}
                     </td>
                 </tr>
             </tbody>
@@ -29,19 +31,18 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        items: {
-            type: Array,
-            required: true,
-        },
-        title: {
-            type: Boolean,
-            required: true
-        }
+<script setup>
+const props = defineProps({
+    items: {
+        type: Array,
+        required: true,
     },
-};
+    title: {
+        type: String,
+        required: true
+    }
+})
+
 </script>
 
 <style>

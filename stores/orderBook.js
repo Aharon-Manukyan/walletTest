@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useOrderBookStore = defineStore('orderBook', {
   state: () => ({
-    selectedPair: 'BTCUSDT',
+    selectedPair: '',
     logs: [],
     bids: [],
     asks: [],
@@ -25,20 +25,23 @@ export const useOrderBookStore = defineStore('orderBook', {
     async changeCurrencyPair(pair) {
       let exPair = this.selectedPair 
       this.selectedPair = pair
+      localStorage.setItem('selectedPair', pair)
       const log = {
         message: `Changed currency pair from ${exPair} to ${pair}`,
+        from:exPair,
+        to:pair,
         timestamp: new Date().toISOString(),
       }
       if(!localStorage.getItem("settingLogs")){
         let localLogs = []
-        localLogs.push(log)
+        localLogs.unshift(log)
         localStorage.setItem("settingLogs",JSON.stringify(localLogs))
       }else{
         let logInStorage = JSON.parse(localStorage.getItem("settingLogs"))
-        logInStorage.push(log)
+        logInStorage.unshift(log)
         localStorage.setItem("settingLogs", JSON.stringify(logInStorage))
       }
-      this.logs.push(log)
+      this.logs.unshift(log)
       await this.fetchOrderBook()
 
       if (this.ws) {
@@ -58,7 +61,14 @@ export const useOrderBookStore = defineStore('orderBook', {
       if(localStorage.getItem("settingLogs")){
         this.logs = JSON.parse(localStorage.getItem("settingLogs"))
       }
-     
+    },
+    setSelectedPair(pair){
+      if(localStorage.getItem("selectedPair")){
+        this.selectedPair = localStorage.getItem("selectedPair")
+      }else{
+        this.selectedPair = "BTCUSDT"
+        localStorage.setItem('selectedPair',pair)
+      }
     }
   },
 })
