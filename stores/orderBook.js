@@ -13,6 +13,7 @@ export const useOrderBookStore = defineStore('orderBook', {
   getters: {
     getAsks : (state) => state.asks,
     getBids:(state) => state.bids,
+    getLogs: (state) => state.logs
   },
 
   actions: {
@@ -21,16 +22,25 @@ export const useOrderBookStore = defineStore('orderBook', {
         this.bids = response.data.bids
         this.asks = response.data.asks      
     },
-    changeCurrencyPair(pair) {
+    async changeCurrencyPair(pair) {
+      let exPair = this.selectedPair 
       this.selectedPair = pair
       const log = {
-        message: `Changed currency pair to ${pair}`,
+        message: `Changed currency pair from ${exPair} to ${pair}`,
         timestamp: new Date().toISOString(),
       }
+      if(!localStorage.getItem("settingLogs")){
+        let localLogs = []
+        localLogs.push(log)
+        localStorage.setItem("settingLogs",JSON.stringify(localLogs))
+      }else{
+        let logInStorage = JSON.parse(localStorage.getItem("settingLogs"))
+        logInStorage.push(log)
+        localStorage.setItem("settingLogs", JSON.stringify(logInStorage))
+      }
       this.logs.push(log)
-      this.fetchOrderBook()
+      await this.fetchOrderBook()
 
-      // Set up WebSocket connection
       if (this.ws) {
         this.ws.close()
       }
@@ -44,5 +54,11 @@ export const useOrderBookStore = defineStore('orderBook', {
     setNumItems(numItems) {
       this.numItems = numItems
     },
+    setLogs() {
+      if(localStorage.getItem("settingLogs")){
+        this.logs = JSON.parse(localStorage.getItem("settingLogs"))
+      }
+     
+    }
   },
 })

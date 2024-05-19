@@ -2,7 +2,6 @@
     <div class="container mx-auto p-4 orderBook">
         <h1 class="text-2xl font-bold mb-4">Order Book</h1>
         <label for="numItems" class="block text-sm font-medium text-gray-700">Number of Items</label>
-
         <div>Count : {{ store.numItems > 0 ? store.numItems : 0 }}</div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <OrderBookTable :items="bids" title="Bids" />
@@ -23,7 +22,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import OrderBookTable from '@/components/OrderBookTable.vue';
-import { useNuxtApp } from '#app';
 import { useOrderBookStore } from '@/stores/orderBook'
 
 const store = useOrderBookStore()
@@ -49,6 +47,5 @@ onMounted(async () => {
 <style>
 .orderBook {
     max-height: calc(100vh - 64px) !important;
-    /* overflow: hidden; */
 }
 </style>

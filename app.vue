@@ -21,3 +21,10 @@
     </NuxtLayout>
   </div>
 </template>
+<script setup>
+import { useOrderBookStore } from '@/stores/orderBook'
+const store = useOrderBookStore()
+onMounted(() => {
+  store.setLogs();
+})
+</script>
