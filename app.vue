@@ -24,9 +24,11 @@
 </template>
 <script setup>
 import { useOrderBookStore } from '@/stores/orderBook'
+import { useSettingsStore } from '~/stores/settings'
 const store = useOrderBookStore()
+const storeSettings = useSettingsStore()
 onMounted(() => {
   store.setSelectedPair();
-  store.setLogs();
+  storeSettings.setLogs();
 })
 </script>

@@ -14,6 +14,21 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-socket-io'
-  ]
+  ],
+  router:{
+    extendRoutes(routes) {
+      routes.push({
+        name:'order book',
+        path:'/',
+        component:() => import ('~/pages/index.vue')
+      },
+      {
+        name:'settings',
+        path:'/settings',
+        component:() => import ('~/pages/settings.vue')
+      }
+      )
+    }
+  }
 
 })
