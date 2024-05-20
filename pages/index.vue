@@ -4,7 +4,8 @@
 
         <div class="w-full flex justify-start flex-col gap-1 md:flex-row md:gap-2 md:justify-center md:items-center">
             <label for="numItems" class="block text-[18px] font-medium text-gray-700">Number of Items</label>
-            <select id="numItems" @change="updateNumItems" class="mt-1 w-fit pl-3 pr-5 py-2 rounded-md">
+            <select id="numItems" v-model="numItems" @change="updateNumItems"
+                class="mt-1 w-fit pl-3 pr-5 py-2 rounded-md">
                 <option value="100">100</option>
                 <option value="500">500</option>
                 <option value="1000">1000</option>
