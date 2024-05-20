@@ -2,7 +2,7 @@
   <header>
     <nav class="flex justify-between px-3 bg-[#454545] py-5">
       <div class="">
-        <img src="./assets/logo.svg" alt="logo">
+        <img src="./public/logo.svg" alt="logo">
       </div>
       <ul class="flex flex-row justify-center gap-4">
 

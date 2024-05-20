@@ -12,12 +12,8 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "axios": "^1.6.8",
-    "engine.io": "^6.5.4",
-    "h3": "^1.11.1",
-    "http-proxy-middleware": "^3.0.0",
     "nuxt": "^3.10.2",
     "nuxt-socket-io": "^3.0.13",
-    "nuxt-tailwind-heroicons": "^1.0.4",
     "pinia": "^2.1.7",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
