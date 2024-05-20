@@ -35,7 +35,7 @@ const props = defineProps({
     }
 })
 </script>
-<style>
+<style scoped>
 .tableOrderBook {
     max-height: calc(100vh - 300px) !important;
     overflow-y: auto;

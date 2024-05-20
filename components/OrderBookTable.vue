@@ -24,7 +24,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-center md:hidden ">{{ (+item[1]).toFixed(2) }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center ">{{ (+item[0] *
-                    +item[1]).toFixed(3) }}
+                    +item[1]).toFixed(1) }}
                     </td>
                 </tr>
             </tbody>
@@ -43,8 +43,14 @@ const props = defineProps({
 </script>
 
 <style>
+@media screen and (max-width:768px) {
+    .tableOrderBook {
+        max-height: calc(50vh - 150px) !important;
+    }
+}
+
 .tableOrderBook {
-    max-height: calc(100vh - 300px) !important;
+    max-height: calc(100vh - 300px);
     overflow-y: auto;
 }
 </style>
