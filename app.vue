@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="flex justify-between px-3 bg-black py-5">
+    <nav class="flex justify-between px-3 bg-[#454545] py-5">
       <div class="">
         <img src="./assets/logo.svg" alt="logo">
       </div>
